@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website with GSAP and ScrollTrigger</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 50px 0;
+        }
+
+        header h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        section {
+            padding: 40px 0;
+        }
+
+        #main {
+            height: 70vh;
+            background: #f4f4f4;
+            text-align: center;
+        }
+
+        #main h2 {
+            margin-bottom: 10px;
+        }
+
+        #posts {
+            height: 60vh;
+        }
+
+        #posts .post {
+            margin-bottom: 20px;
+        }
+
+        #posts .post h3 {
+            color: #333;
+        }
+
+        #testimonials {
+            height: 65vh;
+            background: #333;
+            color: #fff;
+            text-align: center;
+        }
+
+        #testimonials .testimonial {
+            margin-bottom: 20px;
+        }
+
+        #about {
+            height: 80vh;
+            background: #f4f4f4;
+            text-align: center;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            height: 50vh;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>Website Title</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#posts">Posts</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#footer">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main>
+        <section id="main">
+            <div class="container">
+                <h2>Welcome to Our Website</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id quam metus.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Posts Section -->
+    <section id="posts">
+        <div class="container">
+            <h2>Recent Posts</h2>
+            <div class="post">
+                <h3>Post Title 1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <div class="post">
+                <h3>Post Title 2</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section id="testimonials">
+        <div class="container">
+            <h2>Testimonials</h2>
+            <div class="testimonial">
+                <p>"This website is fantastic!"</p>
+                <h4>- John Doe</h4>
+            </div>
+            <div class="testimonial">
+                <p>"Highly recommended for everyone."</p>
+                <h4>- Jane Smith</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id quam metus.</p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer id="footer">
+        <div class="container">
+            <p>&copy; 2024 Your Website Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- GSAP library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- GSAP ScrollTrigger Animation Script -->
+    <script>
+        // Register ScrollTrigger plugin
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Scroll-based animations
+
+        // Header animation
+        gsap.from("header", { 
+            duration: 1.5, 
+            y: -100, 
+            opacity: 0, 
+            ease: "bounce", 
+            scrollTrigger: {
+                trigger: "header",
+                start: "top top",  // animation starts when header reaches the top of the viewport
+                toggleActions: "play none none none" 
+            }
+        });
+
+        // Main section animation
+        gsap.from("#main h2", {
+            duration: 1.5,
+            x: -200,
+            opacity: 0,
+            scrollTrigger: {
+                trigger: "#main",
+                start: "top center",
+                toggleActions: "restart pause reverse none"
+            }
+        });
+
+        gsap.from("#main p", {
+            duration: 1.5,
+            x: 200,
+            opacity: 0,
+            scrollTrigger: {
+                trigger: "#main",
+                start: "top center",
+                toggleActions: "restart pause reverse none"
+            }
+        });
+
+        // Posts section animation
+        gsap.from("#posts .post", {
+            duration: 1.5,
+            y: 100,
+            opacity: 0,
+            stagger: 0.3,
+            scrollTrigger: {
+                trigger: "#posts",
+                start: "top center",
+                toggleActions: "restart pause reverse none"
+            }
+        });
+
+        // Testimonials animation
+        gsap.from("#testimonials .testimonial", {
+            duration: 1.5,
+            scale: 0.5,
+            opacity: 0,
+            stagger: 0.3,
+            scrollTrigger: {
+                trigger: "#testimonials",
+                start: "top center",
+                toggleActions: "restart pause reverse none"
+            }
+        });
+
+        // About section animation
+        gsap.from("#about", {
+            duration: 1.5,
+            x: -200,
+            opacity: 0,
+            scrollTrigger: {
+                trigger: "#about",
+                start: "top center",
+                toggleActions: "restart pause reverse none"
+            }
+        });
+
+        gsap.from("#about p", {
+            duration: 1.5,
+            x: 200,
+            opacity: 0,
+            scrollTrigger: {
+                trigger: "#about",
+                start: "top center",
+                toggleActions: "restart pause reverse none"
+            }
+        });
+
+        // Footer animation
+        gsap.from("footer", {
+            duration: 1.5,
+            opacity: 0,
+            y: 100,
+            scrollTrigger: {
+                trigger: "footer",
+                start: "top bottom",
+                toggleActions: "restart pause reverse none"
+            }
+        });
+    </script>
+</body>
+</html>
